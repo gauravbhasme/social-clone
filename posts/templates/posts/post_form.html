@@ -1,0 +1,19 @@
+{% extends "posts/post_base.html" %}
+
+{% load bootstrap3 %}
+{% block post_content %}
+<h4>Create a new Post</h4>
+<form id="postForm" action="{% url 'posts:create' %}" method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  <input type="submit"  class="btn btn-primary"  value="Post">
+  <input type="file" name="myfile">
+
+
+  {% if uploaded_file_url %}
+    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+  {% endif %}
+
+  <p><a href="{% url 'home' %}">Return to home</a></p>
+</form>
+{% endblock  %}
